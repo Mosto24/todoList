@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const AddNewForm = () => {
+const TodoList = () => {
     let [tasks, setTasks] = useState(Object.entries(JSON.parse(localStorage.getItem('todo_listNew'))));
 
 const deleteTask = (name) => {
@@ -46,6 +46,9 @@ const TodoList = () => {
     const addNewTask = (e) => {
         e.preventDefault();
         let localStorageTasks = JSON.parse(localStorage.getItem('todo_listNew'));
+        if(taskName.length < 1) {
+            return;
+        }
         localStorage.setItem('todo_listNew', JSON.stringify({
             ...localStorageTasks,
             [taskName]: taskDescription
@@ -58,7 +61,7 @@ const TodoList = () => {
     return (
         <div>
         <div className="addNewTaskBtn">
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Добавление задач</button>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Добавить задачу</button>
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
@@ -75,7 +78,7 @@ const TodoList = () => {
                     <label for="exampleInputPassword1" className="form-label">Описание Задачи</label>
                     <input className="form-control" id="exampleInputPassword1" value={taskDescription} onChange={updateTaskDecriptionValue}/>
                 </div>
-                <button type="submit" className="btn btn-primary" onClick={addNewTask}>Добавить</button>
+                <button type="submit" className="btn btn-primary" data-bs-dismiss="modal" onClick={addNewTask}>Добавить</button>
             </div>
           </div>
         </div>
@@ -87,4 +90,4 @@ const TodoList = () => {
     );
 }
 
-export default AddNewForm;
+export default TodoList;
