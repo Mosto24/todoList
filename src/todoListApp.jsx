@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const TodoList = () => {
+const TodoListApp = () => {
     let [tasks, setTasks] = useState(Object.entries(JSON.parse(localStorage.getItem('todo_listNew'))));
 
 const deleteTask = (name) => {
@@ -90,4 +90,4 @@ const TodoList = () => {
     );
 }
 
-export default TodoList;
+export default TodoListApp;
